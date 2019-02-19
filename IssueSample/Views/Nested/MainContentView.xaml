@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="IssueSample.Views.Nested.MainContentView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <CollectionViewSource x:Name="AllCollection" x:Key="AllCollection"
+                              Source="{Binding Path=All.Items, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsSourceGrouped="True"/>
+    </Page.Resources>
+
+    <Grid x:Name="Root">
+        <Grid>
+            <SemanticZoom>
+                <SemanticZoom.ZoomedOutView>
+                    <ListView ItemsSource="{Binding Path=CollectionGroups, Source={StaticResource AllCollection}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                              ItemTemplate="{StaticResource ZoomOutGroupByDateDataTemplate}"
+                              SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                </SemanticZoom.ZoomedOutView>
+                <SemanticZoom.ZoomedInView>
+                    <ListView ItemsSource="{Binding Source={StaticResource AllCollection}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              SelectedItem="{Binding All.Selection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                              ItemTemplate="{StaticResource ItemDataTemplate}"
+                              SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                              ShowsScrollingPlaceholders="True">
+                        <ListView.GroupStyle >
+                            <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupByDateDataTemplate}"/>
+                        </ListView.GroupStyle>
+                    </ListView>
+                </SemanticZoom.ZoomedInView>
+            </SemanticZoom>
+        </Grid>
+    </Grid>
+</Page>

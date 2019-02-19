@@ -1,0 +1,70 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:micro="using:Caliburn.Micro"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:nested="using:IssueSample.ViewModels.Nested"
+    mc:Ignorable="d">
+
+
+    <DataTemplate x:Key="ZoomOutGroupByDateDataTemplate">
+        <Grid d:DataContext="{d:DesignInstance nested:GroupedByTimeItemViewModel}"
+              micro:Action.TargetWithoutContext="{Binding ElementName=Root, Path=DataContext}"
+              Margin="0,1.5" Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="12"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Margin="0,8,0,9">
+                <TextBlock Text='{Binding Group.Key}'/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GroupByDateDataTemplate">
+        <Grid d:DataContext="{d:DesignInstance nested:GroupedByTimeItemViewModel}"
+              micro:Action.TargetWithoutContext="{Binding ElementName=Root, Path=DataContext}">
+            <Grid Margin="12,21,12,9">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text='{Binding Key}'/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="ItemDataTemplate">
+        <controls:SlidableListItem d:DataContext="{d:DesignInstance nested:ItemViewModel}"
+                                   x:Name="GridItem"
+                                   
+                                   RightIcon="Delete" RightBackground="DarkRed"
+                                   RightLabel="Delete"
+                                   
+                                   LeftIcon="Edit" LeftBackground="DodgerBlue"
+                                   LeftLabel="Edit"
+                                   
+                                   ActivationWidth="150" MouseSlidingEnabled="True"
+                                   micro:Message.Attach="[Event LeftCommandRequested] = [Action Edit()];
+                                                         [Event RightCommandRequested] = [Action Delete()]"
+                                   
+                                   IsLeftCommandEnabled="{Binding IsSelected}" 
+                                   IsEnabled="{Binding IsSelected}"
+                                   IsRightCommandEnabled="{Binding IsSelected}"
+                                   
+                                   Margin="0,1.5" Padding="0">
+
+            <Grid>
+                <TextBlock Text="{Binding Item.Comment}" Margin="0,3,0,6"/>
+            </Grid>
+        </controls:SlidableListItem>
+    </DataTemplate>
+
+</ResourceDictionary>
