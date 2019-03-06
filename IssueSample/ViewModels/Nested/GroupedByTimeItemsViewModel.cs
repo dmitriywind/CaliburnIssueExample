@@ -34,7 +34,7 @@ namespace IssueSample.ViewModels.Nested
             Items = new ObservableCollection<GroupedByTimeItemViewModel>(result);
         }
         
-        public new ItemViewModel Selection
+        public ItemViewModel Selection
         {
             get => _selection;
             set

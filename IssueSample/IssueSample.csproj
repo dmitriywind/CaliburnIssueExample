@@ -119,6 +119,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BehaviorCollection.cs" />
+    <Compile Include="Interaction.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\IParam.cs" />
     <Compile Include="Models\Messages.cs" />
@@ -127,7 +129,10 @@
     <Compile Include="Services\ViewModelFactoryService.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\Base\ItemsBaseViewModel.cs" />
+    <Compile Include="Behavior.cs" />
+    <Compile Include="BehaviorOfT.cs" />
     <Compile Include="ViewModels\MainScreenViewModel.cs" />
+    <Compile Include="MessageAttach.cs" />
     <Compile Include="ViewModels\Nested\AllViewModel.cs" />
     <Compile Include="ViewModels\Nested\GroupedByTimeItemViewModel.cs" />
     <Compile Include="ViewModels\Nested\GroupedByTimeItemsViewModel.cs" />

@@ -52,7 +52,7 @@
                                    LeftLabel="Edit"
                                    
                                    ActivationWidth="150" MouseSlidingEnabled="True"
-                                   micro:Message.Attach="[Event LeftCommandRequested] = [Action Edit()];
+                                   micro:MessageEx.Attach="[Event LeftCommandRequested] = [Action Edit()];
                                                          [Event RightCommandRequested] = [Action Delete()]"
                                    
                                    IsLeftCommandEnabled="{Binding IsSelected}" 
